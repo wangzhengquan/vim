@@ -1,0 +1,90 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+" Define bundles via Github repos
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'powerline/powerline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tomasr/molokai'
+Plugin 'Yggdroot/indentLine'
+Plugin 'majutsushi/tagbar'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'Chiel92/vim-autoformat'
+" https://github.com/scrooloose/nerdcommenter
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
+Plugin 'vim-scripts/taglist.vim'
+
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+source ~/.vim/setting/NERDTree.vim
+source ~/.vim/setting/ctrlp.vim
+source ~/.vim/setting/molokai.vim
+" powerline
+set laststatus=2 " Always display the status line
+" indentLine
+let g:indentLine_char = '┊'
+
+" Tagbar
+let g:tagbar_width=35
+let g:tagbar_autofocus=1
+nmap <F6> :TagbarToggle<CR>
+" taglist
+nmap <F3> :TlistToggle<CR>
+" YouCompleteMe
+" let g:SimpylFold_docstring_preview=1
+let g:ycm_autoclose_preview_window_after_completion=1
+" nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+
+" astyle
+let g:formatdef_my_cpp = '"astyle --style=attach --pad-oper --lineend=linux --indent=spaces=2"'
+let g:formatters_cpp = ['my_cpp']
+map = :Autoformat<CR>
+"au BufWrite * :Autoformat
+
+" NERD Commenter
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
+
+" Vim-instant-markdown 
+"let g:instant_markdown_slow = 1
+"let g:instant_markdown_autostart = 0
+"let g:instant_markdown_open_to_the_world = 1
+"let g:instant_markdown_allow_unsafe_content = 1
+"let g:instant_markdown_allow_external_content = 0
+"let g:instant_markdown_mathjax = 1
+"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+"let g:instant_markdown_autoscroll = 0
+
+" Vim-instant-markdown doesn't work in zsh
+" set shell=bash\ -i
