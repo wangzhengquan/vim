@@ -54,16 +54,20 @@ case "$OS" in
       git vim vim-gnome \
       python-setuptools python-dev python3-dev \
       ctags  xclip astyle \
-      xdg-utils curl silversearcher-ag  nodejs
-    sudo npm -g install instant-markdown-d
+      xdg-utils curl silversearcher-ag \
+
+      #nodejs npm
+    #sudo npm -g install instant-markdown-d
     ;;
   mac)
     if test -z `which brew`; then
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi 
     check_install cmake git vim \
-      ctags astyle the_silver_searcher nodejs
-    npm -g install instant-markdown-d
+      ctags astyle the_silver_searcher \
+      
+      #nodejs npm
+    #npm -g install instant-markdown-d
     ;;
   *)
     echo "can't recognize the system flavor"
@@ -131,7 +135,7 @@ if [ "$YCMFULL" = "1" ]; then
 
   cd $ORIGDIR
   rm -rf ~/vim_tmp
-else
+#else
 #  ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
 fi
 
