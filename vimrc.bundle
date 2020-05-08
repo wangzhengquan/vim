@@ -10,7 +10,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 " Define bundles via Github repos
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'powerline/powerline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'

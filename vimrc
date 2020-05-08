@@ -120,12 +120,17 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 
 " Replace 
-nnoremap <Leader>r :1,$s///g
+nnoremap <Leader>r :1,$ s///g
 " Clipboard
 map <Leader>c "*yy
 map <Leader>x "*dd
 map <Leader>v "*p
-
+noremap <Leader>y "*y
+noremap <Leader>d "*d
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>D "+d
+noremap <Leader>P "+p
 " Vim-instant-markdown doesn't work in zsh
 set shell=bash\ -i
 

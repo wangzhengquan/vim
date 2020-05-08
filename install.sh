@@ -50,11 +50,16 @@ echo "the system is $OS"
 case "$OS" in
   ubuntu)
     sudo apt-get update
-    check_install build-essential cmake \
-      git vim vim-gnome \
+    sudo apt-get install -y  build-essential  git qemu-system-x86  gdb cgdb \
+      eclipse-cdt make diffutils exuberant-ctags tmux \
+      cscope meld qgit gitg gcc-multilib gcc-multilib g++-multilib \
+      bison flex libssl-dev libelf-dev \
+      cmake \
+      vim vim-gnome \
       python-setuptools python-dev python3-dev \
       ctags  xclip astyle \
       xdg-utils curl silversearcher-ag \
+      openssh-server openssh-client
 
       #nodejs npm
     #sudo npm -g install instant-markdown-d
@@ -117,6 +122,8 @@ if [ "$YCMFULL" = "1" ]; then
   # istall libclang-based completer that provides semantic completion for C-family languages
   case "$OS" in
     ubuntu)
+     # http://releases.llvm.org/
+     # http://www.aosabook.org/en/llvm.html
       wget -O clang_llvm.tar.xz  http://releases.llvm.org/6.0.0/clang+llvm-6.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz   
       ;;
     mac)

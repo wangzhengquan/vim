@@ -18,3 +18,4 @@ highlight Folded  guibg=#0A0A0A guifg=#9090D0
 " monokai原始背景色
 "let g:molokai_original = 1
 let g:rehash256 = 1
+" set background=light
