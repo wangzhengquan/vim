@@ -56,6 +56,7 @@ case "$OS" in
       python-setuptools python-dev python3-dev \
       ctags  xclip astyle \
       xdg-utils curl silversearcher-ag \
+      openssh-server openssh-client
 
       #nodejs npm
     #sudo npm -g install instant-markdown-d
