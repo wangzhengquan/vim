@@ -56,6 +56,7 @@ case "$OS" in
       python-setuptools python-dev python3-dev \
       ctags  xclip astyle \
       xdg-utils curl silversearcher-ag \
+      openssl libssl-dev \
       openssh-server openssh-client
 
       #nodejs npm
