@@ -14,7 +14,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'powerline/powerline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tomasr/molokai'
-Plugin 'Yggdroot/indentLine'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
@@ -47,8 +46,6 @@ source ~/.vim/setting/ctrlp.vim
 source ~/.vim/setting/molokai.vim
 " powerline
 set laststatus=2 " Always display the status line
-" indentLine
-let g:indentLine_char = '┊'
 
 " Tagbar
 let g:tagbar_width=35
