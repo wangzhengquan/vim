@@ -106,10 +106,10 @@ else
   echo "update..."
 fi
 
-cat >tmpinfo <<_MYEOF
+cat >tmpinfo <<EOF
 Installing......
 Please wait patiently!
-_MYEOF
+EOF
 # vim tmpinfo -c "BundleInstall" -c "qa"
 vim tmpinfo +PluginInstall +qall
 rm tmpinfo
