@@ -1,5 +1,5 @@
 #!/bin/bash
-OS=
+#OS=
 install_prefix=
 ORIGDIR=$(pwd)
 
@@ -14,15 +14,52 @@ do
 done
 
 echo "installing will take a long time, please wait patiently ^_^"
+
+function systype() {
+
+  case `uname -s` in
+  "FreeBSD")
+    PLATFORM="freebsd"
+    ;;
+  "Linux")
+    PLATFORM="linux"
+    ;;
+  "Darwin")
+    PLATFORM="macos"
+    ;;
+  "SunOS")
+    PLATFORM="solaris"
+    ;;
+  *)
+    echo "Unknown platform" >&2
+    return 1
+  esac
+
+  if [ "$PLATFORM"=="linux" ]; then
+    if [ "$(cat /proc/version | grep "Red Hat")" ]; then
+      PLATFORM="redhat"
+    elif [ "$(cat /proc/version | grep "Ubuntu")" ]; then
+      PLATFORM="ubuntu"
+    else
+      echo "Unknown platform" >&2
+      return 1
+    fi
+  fi
+  echo $PLATFORM
+  return 0
+}
+
+
+OS=`systype`
 # check system
-if which apt-get; then
-  OS="ubuntu"
-  install_prefix="sudo apt-get install -y"
-  ##Add HomeBrew support on  Mac OS
-elif which brew; then
-  OS="mac"
-  install_prefix="brew install"
-fi
+# if which apt-get; then
+#   OS="ubuntu"
+#   install_prefix="sudo apt-get install -y"
+#   ##Add HomeBrew support on  Mac OS
+# elif which brew; then
+#   OS="mac"
+#   install_prefix="brew install"
+# fi
 
 # $* install name list
 check_install() {
@@ -47,8 +84,9 @@ check_install_by_alias() {
 }
 
 echo "the system is $OS"
-case "$OS" in
-  ubuntu)
+
+case $OS in
+  "ubuntu")
     sudo apt-get update
     sudo apt-get upgrade
     check_install build-essential cmake \
@@ -62,7 +100,7 @@ case "$OS" in
       #nodejs npm
     #sudo npm -g install instant-markdown-d
     ;;
-  mac)
+  "mac")
     if test -z `which brew`; then
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi 
@@ -71,6 +109,9 @@ case "$OS" in
       
       #nodejs npm
     #npm -g install instant-markdown-d
+    ;;
+  "redhat")
+    yum  -y update
     ;;
   *)
     echo "can't recognize the system flavor"
@@ -119,10 +160,12 @@ if [ "$YCMFULL" = "1" ]; then
   LLVM_ROOT="clang_llvm"
   # istall libclang-based completer that provides semantic completion for C-family languages
   case "$OS" in
-    ubuntu)
+    "ubuntu")
       wget -O clang_llvm.tar.xz  http://releases.llvm.org/6.0.0/clang+llvm-6.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz   
       ;;
-    mac)
+    "redhat")
+      ;;
+    "mac")
       wget -O clang_llvm.tar.xz  http://releases.llvm.org/6.0.0/clang+llvm-6.0.0-x86_64-apple-darwin.tar.xz.sig
       ;;
     *)
