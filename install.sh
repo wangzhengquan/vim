@@ -115,7 +115,6 @@ case $OS in
     ;;
   *)
     echo "can't recognize the system flavor"
-    exit 1
     ;;
 esac
 
@@ -170,7 +169,6 @@ if [ "$YCMFULL" = "1" ]; then
       ;;
     *)
       echo "Don't support YCMFULL install"
-      exit 1
       ;;
   esac
   tar -zxvf clang_llvm.tar.xz
