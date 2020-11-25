@@ -111,6 +111,7 @@ case $OS in
     #npm -g install instant-markdown-d
     ;;
   "redhat")
+    dnf install vim
     # yum  -y update
     ;;
   *)
