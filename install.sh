@@ -111,7 +111,7 @@ case $OS in
     #npm -g install instant-markdown-d
     ;;
   "redhat")
-    yum  -y update
+    # yum  -y update
     ;;
   *)
     echo "can't recognize the system flavor"
