@@ -40,6 +40,8 @@ function systype() {
       PLATFORM="redhat"
     elif [ "$(cat /proc/version | grep "Ubuntu")" ]; then
       PLATFORM="ubuntu"
+    elif [ "$(cat /proc/version | grep "debian")" ]; then
+      PLATFORM="debian"
     else
       echo "Unknown platform" >&2
       return 1
@@ -100,6 +102,9 @@ case $OS in
       #nodejs npm
     #sudo npm -g install instant-markdown-d
     ;;
+  "debian")
+   sudo apt install kernel-headers-$(uname -r)
+   ;;
   "mac")
     if test -z `which brew`; then
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
