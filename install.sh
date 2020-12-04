@@ -103,7 +103,7 @@ case $OS in
     #sudo npm -g install instant-markdown-d
     ;;
   "debian")
-   sudo apt install -y  build-essential kernel-headers-$(uname -r)
+   sudo apt install -y  build-essential gcc linux-headers-$(uname -r) aptitude
    ;;
   "mac")
     if test -z `which brew`; then
