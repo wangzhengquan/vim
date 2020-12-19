@@ -116,7 +116,7 @@ case $OS in
     #npm -g install instant-markdown-d
     ;;
   "redhat")
-    yum install kernel-headers kernel-devel gcc make -y
+    yum install kernel-headers kernel-devel gcc gcc-c++ make autoconf automake -y
     # yum  -y update
     ;;
   *)
