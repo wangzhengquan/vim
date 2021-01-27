@@ -89,9 +89,9 @@ echo "the system is $OS"
 
 case $OS in
   "ubuntu")
-    sudo apt-get update
-    sudo apt-get upgrade
-    check_install build-essential cmake \
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+    sudo apt install -y build-essential cmake \
       git vim vim-gnome \
       python-setuptools python-dev python3-dev \
       ctags  xclip astyle \
