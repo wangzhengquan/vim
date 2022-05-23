@@ -37,7 +37,13 @@ set numberwidth=5
 set splitbelow
 set splitright
 
+" Switch syntax highlighting on, when the terminal has colors
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+  syntax on
+endif
 
+" syntax hightlight
+syntax enable
 
 
 augroup vimrcEx

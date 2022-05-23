@@ -106,11 +106,8 @@ case $OS in
    sudo apt install -y  build-essential gcc linux-headers-$(uname -r) aptitude
    ;;
   "mac")
-    if test -z `which brew`; then
-      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    fi 
-    check_install cmake git vim \
-      ctags astyle the_silver_searcher \
+    check_install cmake git \
+      ctags astyle the_silver_searcher
       
       #nodejs npm
     #npm -g install instant-markdown-d

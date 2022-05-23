@@ -43,7 +43,9 @@ filetype plugin indent on    " required
 
 source ~/.vim/setting/NERDTree.vim
 source ~/.vim/setting/ctrlp.vim
-source ~/.vim/setting/molokai.vim
+source ~/.vim/setting/molokai2.vim
+" inner color schemel
+" :color desert
 " powerline
 set laststatus=2 " Always display the status line
 
