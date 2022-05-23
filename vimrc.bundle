@@ -13,13 +13,14 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'powerline/powerline'
 Plugin 'scrooloose/nerdtree'
+" 代码颜色高亮插件
 Plugin 'tomasr/molokai'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'Chiel92/vim-autoformat'
-" https://github.com/scrooloose/nerdcommenter
+" 注解插件  
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
 Plugin 'vim-scripts/taglist.vim'
@@ -45,7 +46,8 @@ source ~/.vim/setting/NERDTree.vim
 source ~/.vim/setting/ctrlp.vim
 source ~/.vim/setting/molokai2.vim
 " inner color schemel
-" :color desert
+" color desert
+
 " powerline
 set laststatus=2 " Always display the status line
 
@@ -67,7 +69,6 @@ let g:formatters_cpp = ['my_cpp']
 map = :Autoformat<CR>
 "au BufWrite * :Autoformat
 
-" NERD Commenter
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')

@@ -186,6 +186,4 @@ if [ "$YCMFULL" = "1" ]; then
 #  ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
 fi
 
-
-
 echo "Finished!"
