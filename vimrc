@@ -128,16 +128,18 @@ nnoremap <leader>q :q<CR>
 
 " Replace 
 nnoremap <Leader>r :1,$ s///g
-" Clipboard
-map <Leader>c "*yy
-map <Leader>x "*dd
-map <Leader>v "*p
-noremap <Leader>y "*y
-noremap <Leader>d "*d
+" Copy to and Put from Clipboard
+" Copy to Clipboard
+noremap <Leader>y "*yy
+" Cut to Clipboard
+noremap <Leader>x "*dd
+" delete and does not store the deleted text in any register.      
+noremap <Leader>d "_dd
+" paste the text from Clipboard
 noremap <Leader>p "*p
-noremap <Leader>Y "+y
-noremap <Leader>D "+d
-noremap <Leader>P "+p
+" patte the text copy from yank
+noremap <Leader>0 "0p
+
 " Vim-instant-markdown doesn't work in zsh
 set shell=bash\ -i
 
