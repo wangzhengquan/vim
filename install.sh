@@ -1,6 +1,6 @@
 #!/bin/bash
 #OS=
-install_prefix=
+install="apt-get"
 ORIGDIR=$(pwd)
 
 # check arguments
@@ -53,68 +53,65 @@ function systype() {
 
 
 OS=`systype`
-# check system
-# if which apt-get; then
-#   OS="ubuntu"
-#   install_prefix="sudo apt-get install -y"
-#   ##Add HomeBrew support on  Mac OS
-# elif which brew; then
-#   OS="mac"
-#   install_prefix="brew install"
-# fi
 
-# $* install name list
+echo "The operating system is $OS"
+# args: install name list
 check_install() {
   while [ "$1" != "" ]; do
     if test -z `which $1`; then
-      $install_prefix $1
+      $install $1
     else
-      echo "$1 has already been exist"
+      echo "$1 has already been installed."
     fi
     shift
   done
 }
 
-# $1 alias $2 install-name
+# arg1: alias, arg2: install-name
 check_install_by_alias() {
   while [ "$1" != "" ]; do
     if test -z `which $1`; then
-      $install_prefix $2 
+      $install $2 
+    else
+      echo "$1 has already been installed."
     fi
     shift 2
   done
 }
 
-echo "the system is $OS"
-
 case $OS in
   "ubuntu")
+    install="sudo apt-get -y"
     sudo apt-get update -y
     sudo apt-get upgrade -y
-    sudo apt install -y build-essential cmake \
-      git vim vim-gnome \
-      python-setuptools python-dev python3-dev \
-      ctags  xclip astyle \
-      xdg-utils curl silversearcher-ag \
-      openssl libssl-dev \
-      openssh-server openssh-client
+    # sudo apt install -y build-essential cmake gdb
+    # cscope : https://cscope.sourceforge.net/
+    $install -y ctags cscope xclip astyle \
+      xdg-utils  silversearcher-ag 
 
-      #nodejs npm
+   # sudo apt install -y  vim vim-gnome 
+   # sudo apt-get install -y qemu libvirt-bin
+   # sudo apt install -y  openssl libssl-dev 
+   # sudo apt install -y openssh-server openssh-client
+   # sudo apt install -y python-setuptools python-dev python3-dev
+   # sudo apt install -y git curl
+    #nodejs
     #sudo npm -g install instant-markdown-d
     ;;
   "debian")
+   install="sudo apt install -y"
    sudo apt install -y  build-essential gcc linux-headers-$(uname -r) aptitude
    ;;
   "mac")
+    install="brew install"
     check_install cmake git \
       ctags astyle the_silver_searcher
-      
-      #nodejs npm
-    #npm -g install instant-markdown-d
     ;;
   "redhat")
-    yum install kernel-headers kernel-devel gcc gcc-c++ make autoconf automake -y
+    install="yum install -y"
     # yum  -y update
+    yum install kernel-headers kernel-devel gcc gcc-c++ make autoconf automake -y
+    
     ;;
   *)
     echo "can't recognize the system flavor"
@@ -131,8 +128,8 @@ fi
 
 if test "X$INSTALL_TYPE" != "Xupdate" ; then
   # install
-  mv -f ~/.vim ~/.vim_old
-  mv -f ~/.vimrc ~/.vimrc_old
+  [ -d ~/.vim ] && mv -f ~/.vim ~/.vim_`date +%F`
+  [ -f ~/.vimrc ] && mv -f ~/.vimrc ~/.vimrc_`date +%F`
   git clone --depth=1 https://github.com/wangzhengquan/vim.git ~/.vim
   mv -f ~/.vim/vimrc ~/.vimrc
   mv -f ~/.vim/vimrc.bundle ~/.vimrc.bundle
@@ -155,7 +152,7 @@ Please wait patiently!
 EOF
 # vim tmpinfo -c "BundleInstall" -c "qa"
 vim tmpinfo +PluginInstall +qall
-rm tmpinfo
+rm -f tmpinfo
 
 if [ "$YCMFULL" = "1" ]; then
   mkdir ~/vim_tmp && cd ~/vim_tmp
@@ -186,4 +183,4 @@ if [ "$YCMFULL" = "1" ]; then
 #  ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
 fi
 
-echo "Finished!"
+echo "Success!"
