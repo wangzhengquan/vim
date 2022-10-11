@@ -1,7 +1,7 @@
 " Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 set nocompatible
-set mouse=
+" set mouse=
 
 " Highlight current line
 au WinLeave * set nocursorline nocursorcolumn
@@ -29,7 +29,7 @@ set shiftwidth=2
 set shiftround
 set expandtab
 " Display extra whitespace
-set list listchars=tab:»·,trail:·
+" set list listchars=tab:»·,trail:·
 " Numbers
 set number
 set numberwidth=5
