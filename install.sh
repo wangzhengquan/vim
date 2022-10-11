@@ -81,12 +81,12 @@ check_install_by_alias() {
 
 case $OS in
   "ubuntu")
-    install="sudo apt-get -y"
+    install="sudo apt-get install -y"
     sudo apt-get update -y
     sudo apt-get upgrade -y
     # sudo apt install -y build-essential cmake gdb
     # cscope : https://cscope.sourceforge.net/
-    $install -y ctags cscope xclip astyle \
+    $install ctags cscope xclip astyle \
       xdg-utils  silversearcher-ag 
 
    # sudo apt install -y  vim vim-gnome 
