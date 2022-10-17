@@ -7,6 +7,11 @@ Stick the follow command in you terminal：
 ```
 wget -qO- https://wangzhengquan.github.io/vim/install.sh | bash
 ```
+or
+```
+/bin/bash -c "$(curl -fsSL https://wangzhengquan.github.io/vim/install.sh)"
+
+```
 
 ## Screenshot
 ![](./screenshot.jpg)
