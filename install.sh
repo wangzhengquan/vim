@@ -79,6 +79,8 @@ check_install_by_alias() {
   done
 }
 
+echo ">>> Install required programe"
+
 case $OS in
   "ubuntu")
     install="sudo apt-get install -y"
@@ -126,10 +128,13 @@ if test -z `which autopep8`; then
   sudo easy_install -ZU autopep8 
 fi
 
+
+
 if test "X$INSTALL_TYPE" != "Xupdate" ; then
+  echo ">>> Download vim plugin"
   # install
-  [ -d ~/.vim ] && mv -f ~/.vim ~/.vim_`date +%F`
-  [ -f ~/.vimrc ] && mv -f ~/.vimrc ~/.vimrc_`date +%F`
+  [ -d ~/.vim ] && mv -f ~/.vim ~/.vim_`date +%F_%T`
+  [ -f ~/.vimrc ] && mv -f ~/.vimrc ~/.vimrc_`date +%F_%T`
   git clone --depth=1 https://github.com/wangzhengquan/vim.git ~/.vim
   mv -f ~/.vim/vimrc ~/.vimrc
   mv -f ~/.vim/vimrc.bundle ~/.vimrc.bundle
@@ -146,18 +151,28 @@ else
   echo "update..."
 fi
 
-cat >tmpinfo <<EOF
+cat > tmpinfo << EOF
 Installing......
 Please wait patiently!
 EOF
+
 # vim tmpinfo -c "BundleInstall" -c "qa"
 vim tmpinfo +PluginInstall +qall
+
+echo $? End
+
+# if [ $? = 0 ]; then
+#   echo "Success!"
+# else
+#   echo "Failture!"
+# fi
+
 rm -f tmpinfo
 
 if [ "$YCMFULL" = "1" ]; then
+  echo ">>> Install libclang-based completer that provides semantic completion for C-family languages"
   mkdir ~/vim_tmp && cd ~/vim_tmp
   LLVM_ROOT="clang_llvm"
-  # istall libclang-based completer that provides semantic completion for C-family languages
   case "$OS" in
     "ubuntu")
       wget -O clang_llvm.tar.xz  http://releases.llvm.org/6.0.0/clang+llvm-6.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz   
@@ -183,4 +198,4 @@ if [ "$YCMFULL" = "1" ]; then
 #  ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
 fi
 
-echo "Success!"
+
