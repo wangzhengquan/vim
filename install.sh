@@ -84,8 +84,8 @@ echo ">>> Install required programe"
 case $OS in
   "ubuntu")
     install="sudo apt-get install -y"
-    sudo apt-get update -y
-    sudo apt-get upgrade -y
+    
+    # sudo apt-get update -y && sudo apt-get upgrade -y
     # sudo apt install -y build-essential cmake gdb
     # cscope : https://cscope.sourceforge.net/
     $install ctags cscope xclip astyle \
